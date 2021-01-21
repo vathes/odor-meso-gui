@@ -1,29 +1,22 @@
 
 import datajoint as dj
-import dash
-import dash_table
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_core_components as dcc
-import dash_bootstrap_components as dbc
-import copy
-from dj_tables import lab, subject, hardware
-import dj_dash import dj_utils
 from odor_meso_gui.app import app
-
-from tabs import subject_tab, hardware_tab_from_template
+from odor_meso_gui.tabs import odorant_tab, odorsolution_tab, \
+    odorsession_tab, odorrecording_tab
 
 # ========================= Construct webpage layout ========================
 app.layout = html.Div(
     [
         dcc.Tabs(
-            id="tabs", value='Subject',
+            id="tabs", value='odorant',
             children=[
-                dcc.Tab(label='Lab', value='Lab'),
-                dcc.Tab(label='Subject', value='Subject'),
-                dcc.Tab(label='Surgery', value='Surgery'),
-                dcc.Tab(label='Session', value='Session'),
-                dcc.Tab(label='Hardware', value='Hardware')
+                dcc.Tab(label='Odorant', value='odorant'),
+                dcc.Tab(label='OdorSolution', value='odorsolution'),
+                dcc.Tab(label='OdorSession', value='odorsession'),
+                dcc.Tab(label='OdorRecording', value='odorrecording'),
             ],
             style={'width': '50%', 'marginBottom': '2em'}),
         html.Div(id='tabs-content')
@@ -35,26 +28,13 @@ app.layout = html.Div(
 @app.callback(Output('tabs-content', 'children'),
               [Input('tabs', 'value')])
 def render_content(tab):
-    if tab == 'Subject':
-        return subject_tab.subject_tab_contents
-    elif tab == 'Lab':
-        return html.Div([
-            html.H3('lab content')
-        ])
-    elif tab == 'Surgery':
-        return html.Div([
-            html.H3('Surgery content')
-        ])
-    elif tab == 'Session':
-        return html.Div([
-            html.H3('Session content')
-        ])
-    elif tab == 'Hardware':
-        return hardware_tab_from_template.hardware_tab_contents
+    current_tab = eval(tab + '_tab')
+    current_tab.refresh_contents()
+    return current_tab.tab
 
 
 # ========================= Run server =========================
 if __name__ == '__main__':
     dj.config['safemode'] = False
     # run the server, debug = True allows auto-updating without restarting the server.
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8000)
