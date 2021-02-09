@@ -37,4 +37,4 @@ def render_content(tab):
 if __name__ == '__main__':
     dj.config['safemode'] = False
     # run the server, debug = True allows auto-updating without restarting the server.
-    app.run_server(debug=True, port=8000)
+    app.run_server(host='0.0.0.0', port=8000)
