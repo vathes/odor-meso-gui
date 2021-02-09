@@ -1,7 +1,7 @@
 # odor-meso-gui
 Graphical interface for odor meso experiments for Reimer Lab and Pfaffinger Lab at BCM.
 
-# Installation and running
+# Running with python virtual environment
 
 1. Clone repository
 ```bash
@@ -23,4 +23,15 @@ pip install -e .
 ```bash
 python odor_meso_gui/index.py
 ```
-6. Go to localhost:8000 in your browser to start using the GUI
+6. Go to 0.0.0.0:8000 in your browser to start using the GUI
+
+# Running with docker
+
+1. Clone repository
+```bash
+git clone https://github.com/shenshan/odor-meso-gui.git
+```
+2. Go to the directory you just cloned.
+3. Copy `.env_template` as `.env` and fill in the credentials
+4. `docker-compose up -d`
+5. Go to 0.0.0.0:8000 in your browser to start using the GUI
