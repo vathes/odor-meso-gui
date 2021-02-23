@@ -35,3 +35,10 @@ git clone https://github.com/shenshan/odor-meso-gui.git
 3. Copy `.env_template` as `.env` and fill in the credentials
 4. `docker-compose up -d`
 5. Go to 0.0.0.0:8000 in your browser to start using the GUI
+
+# How to update if running with Docker?
+
+1. go to the directory `odor-meso-gui`
+2. git pull
+3. `docker-compose down`
+4. `docker-compose up -d --build`
