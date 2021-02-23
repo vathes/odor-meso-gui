@@ -1,10 +1,21 @@
 import datajoint as dj
 from odor_meso_gui.app import app
-from datajoint_dashboard.templates import TableBlock
+from datajoint_dashboard.templates import TableBlock, Filter
 from odor_meso_gui.dj_tables import odor, experiment, meso
 import dash_html_components as html
 
-block = TableBlock(odor.OdorRecording, app, extra_tables=[odor.MesoMatch, odor.MesoMatch.ScanTag])
+
+def save_tag_query(table, values):
+    return table & [{'scan_tag': v} for v in values] if values else {}
+
+
+scan_tag_filter = Filter(
+     odor.MesoMatch.ScanTag, 'scan_tag', multi=True,
+     query_function=save_tag_query)
+
+block = TableBlock(odor.OdorRecording, app,
+                   extra_tables=[odor.MesoMatch, odor.MesoMatch.ScanTag],
+                   filters=[scan_tag_filter])
 
 
 def refresh_contents():
