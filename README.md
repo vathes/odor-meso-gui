@@ -5,7 +5,7 @@ Graphical interface for odor meso experiments for Reimer Lab and Pfaffinger Lab 
 
 1. Clone repository
 ```bash
-git clone https://github.com/shenshan/odor-meso-gui.git
+git clone https://github.com/reimerlab/odor-meso-gui.git
 ```
 
 2. Set up virtual environment with pip or conda
@@ -29,7 +29,7 @@ python odor_meso_gui/index.py
 
 1. Clone repository
 ```bash
-git clone https://github.com/shenshan/odor-meso-gui.git
+git clone https://github.com/reimerlab/odor-meso-gui.git
 ```
 2. Go to the directory you just cloned.
 3. Copy `.env_template` as `.env` and fill in the credentials

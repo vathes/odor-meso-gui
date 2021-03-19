@@ -8,7 +8,7 @@ with open(path.join(here, 'requirements.txt')) as f:
 
 setup(
     name='odor-meso-gui',
-    version='0.0.0',
+    version='0.0.2',
     description='Simple GUI for odor recording for Reimer and Pfaffinger labs',
     author='Vathes',
     author_email='support@vathes.com',
