@@ -1,9 +1,12 @@
+# data
+data/*
 
 # IDEA configs
 .idea/
 
 # vscode settings
 .vscode/*
+*.code-workspace
 
 # macOS
 .DS_Store
@@ -97,7 +100,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env*
+.env
 .venv
 env/
 venv/

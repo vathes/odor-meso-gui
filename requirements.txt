@@ -1,1 +1,1 @@
-datajoint-dashboard @ git+https://github.com/shenshan/datajoint-dashboard.git
+datajoint-dashboard @ git+https://github.com/reimerlab/datajoint-dashboard.git

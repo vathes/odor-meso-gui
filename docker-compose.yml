@@ -1,0 +1,15 @@
+version: "2.2"
+services:
+  meso_gui:
+    build: .
+    volumes:
+      - ./:/src/gui/
+    ports:
+      - 8000:8000
+    env_file: .env
+    working_dir: /src/gui
+    command: bash -c ". /root/.bashrc && python odor_meso_gui/index.py"
+    networks:
+      - meso
+networks:
+  meso:
