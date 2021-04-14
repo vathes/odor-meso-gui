@@ -11,7 +11,7 @@ def save_tag_query(table, values):
 
 scan_tag_filter = Filter(
      odor.MesoMatch.ScanTag, 'scan_tag', multi=True,
-     query_function=save_tag_query)
+     restrictor_constructor=save_tag_query)
 
 block = TableBlock(odor.OdorRecording, app,
                    extra_tables=[odor.MesoMatch, odor.MesoMatch.ScanTag],
