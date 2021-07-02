@@ -5,13 +5,19 @@ from odor_meso_gui.dj_tables import odor, experiment, meso
 import dash_html_components as html
 
 
-def save_tag_query(table, values):
-    return table & [{'scan_tag': v} for v in values] if values else {}
+def save_tag_query(values):
+    return odor.MesoMatch.ScanTag & [{'scan_tag': v} for v in values] if values else {}
 
+
+def save_tag_options():
+    return (odor.MesoMatch.ScanTag & odor.OdorRecording).fetch('scan_tag')
 
 scan_tag_filter = Filter(
-     odor.MesoMatch.ScanTag, 'scan_tag', multi=True,
-     restrictor_constructor=save_tag_query)
+    query_function=save_tag_query,
+    get_options=save_tag_options,
+    filter_id='save-tag-filter',
+    filter_name='Save Tag',
+    multi=True)
 
 block = TableBlock(odor.OdorRecording, app,
                    extra_tables=[odor.MesoMatch, odor.MesoMatch.ScanTag],
